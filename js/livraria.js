@@ -35,27 +35,60 @@ const categoriaLivros = [
     }
 ];
 
+ResetarSecoes = () => {
+    document.getElementById("tabela").style.display = "none";
+    document.getElementById("numero").style.display = "none";
+}
+
 MostrarTodos = () => {
-    console.log("Mostrar todos os livros e informações");
+    ResetarSecoes();
+    document.getElementById("tabela").style.display = "block";
+
+    let antigoTbody = document.getElementById("tbody");
+    let novoTbody = document.createElement("tbody");
+
     for (let i = 0; i < categoriaLivros.length; i++) {
-        console.log(categoriaLivros[i].livros);
+        for (let j = 0; j < categoriaLivros[i].livros.length; j++) {
+            let tr = document.createElement("tr");
+
+            let titulo = document.createElement("td");
+            titulo.innerText = categoriaLivros[i].livros[j].titulo;
+
+            let autores = document.createElement("td");
+            autores.innerText = categoriaLivros[i].livros[j].autores;
+
+            tr.appendChild(titulo);
+            tr.appendChild(autores);
+            novoTbody.appendChild(tr);
+        }
     }
+    novoTbody.id = "tbody";
+    antigoTbody.parentNode.replaceChild(novoTbody, antigoTbody);
 }
 
 ContarCategoriasLivros = () => {
-    console.log("Contar o número de categorias e o número de livros de cada categoria");
+    ResetarSecoes();
+    novaSecao = document.createElement("section");
 
-    let numeroDeCategorias = categoriaLivros.length;
-    console.log(`Número de categorias é ${numeroDeCategorias}`);
+    let numeroDeCategorias = document.createElement("p");
+    numeroDeCategorias.textContent = `Número de categorias é ${categoriaLivros.length}`;
+    novaSecao.appendChild(numeroDeCategorias);
 
     for (let i = 0; i < categoriaLivros.length; i++) {
-        numeroDeLivros = categoriaLivros[i].livros.length;
-        console.log(`Número de livros da categoria ${categoriaLivros[i].categoria} é ${numeroDeLivros}`);
+        let numeroDeLivros = document.createElement("p");
+        numeroDeLivros.textContent = `Número de livros da categoria ${categoriaLivros[i].categoria} é ${categoriaLivros[i].livros.length}`;
+        novaSecao.appendChild(numeroDeLivros);
     }
+    novaSecao.id = "numero";
+    novaSecao.style.display = "block";
+    document.getElementById("numero").parentNode.replaceChild(novaSecao,document.getElementById("numero"));
 }
 
 ContarAutores = () => {
-    console.log("Contar o número de autores");
+    ResetarSecoes();
+    novaSecao = document.createElement("section");
+
+
     let numeroDeAutores = 0;
 
     for (let i = 0; i < categoriaLivros.length; i++) {
@@ -64,21 +97,41 @@ ContarAutores = () => {
         }
     }
 
-    console.log(`Número de autores é ${numeroDeAutores}`);
+    let p = document.createElement("p");
+    p.textContent = `Número de autores é ${numeroDeAutores}`;
+    novaSecao.appendChild(p);
+
+    novaSecao.id = "numero";
+    novaSecao.style.display = "block";
+    document.getElementById("numero").parentNode.replaceChild(novaSecao,document.getElementById("numero"));
 }
 
 LivrosDoAutor = (nomeAutor) => {
-    console.log("Mostrar livros com o nome do autor: " + nomeAutor);
-    let livrosAutor = [];
+    ResetarSecoes();
+    document.getElementById("tabela").style.display = "block";
+
+    let antigoTbody = document.getElementById("tbody");
+    let novoTbody = document.createElement("tbody");
 
     for (let i = 0; i < categoriaLivros.length; i++) {
         for (let j = 0; j < categoriaLivros[i].livros.length; j++) {
             for (let k = 0; k < categoriaLivros[i].livros[j].autores.length; k++) {
                 if (categoriaLivros[i].livros[j].autores[k] == nomeAutor) {
-                    livrosAutor.push(categoriaLivros[i].livros[j]);
+                    let tr = document.createElement("tr");
+
+                    let titulo = document.createElement("td");
+                    titulo.innerText = categoriaLivros[i].livros[j].titulo;
+
+                    let autores = document.createElement("td");
+                    autores.innerText = categoriaLivros[i].livros[j].autores;
+
+                    tr.appendChild(titulo);
+                    tr.appendChild(autores);
+                    novoTbody.appendChild(tr);
                 }
             }
         }
+        novoTbody.id = "tbody";
+        antigoTbody.parentNode.replaceChild(novoTbody, antigoTbody);
     }
-    console.log(livrosAutor);
 }

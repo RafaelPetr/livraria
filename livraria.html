@@ -4,15 +4,49 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="sylesheet" type="text/css" href="css/livraria.css">
+        <link rel="stylesheet" type="text/css" href="css/livraria.css">
         <title>Livraria</title>
     </head>
     <body>
-        <button type="button" onclick="MostrarTodos()">Mostrar Livros</button><br>
-        <button type="button" onclick="ContarCategoriasLivros()">Contar Categorias e seus Livros</button><br>
-        <button type="button" onclick="ContarAutores()">Contar Autores</button><br>
-        Nome do Autor: <input type="text" id="nomeAutor"><br>
-        <button type="button" onclick="LivrosDoAutor(nomeAutor.value)">Livros do Autor</button><br>
+        <div id="container">
+            <header>
+                <h1>Livraria</h1>
+            </header>
+            <main>
+                <section id="escolha">
+                    <h2>Escolha uma Funcionalidade</h2>
+                    <ul>
+                        <li>
+                            <button type="button" onclick="MostrarTodos()">Mostrar Livros</button>
+                        </li>
+                        <li>
+                            <button type="button" onclick="ContarCategoriasLivros()">Contar Categorias e seus Livros</button>
+                        </li>
+                        <li>
+                            <button type="button" onclick="ContarAutores()">Contar Autores</button>
+                        </li>
+                        <li>
+                            <button type="button" id="LivrosAutor" onclick="LivrosDoAutor(nomeAutor.value)">Livros de <input type="text" id="nomeAutor" placeholder="Nome do autor"></button>
+                        </li>
+                    </ul>
+                </section>
+                <section id="tabela">
+                    <table id>
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Autores</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </section>
+                <section id="numero"></section>
+            </main>
+            <footer>
+                <p>Site criado por Rafael Petry da Silva, 2021.</p>
+            </footer>
+        </div>
         <script src = "js/livraria.js"></script>
     </body>
 </html>
