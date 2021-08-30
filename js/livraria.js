@@ -32,7 +32,7 @@ const categoriaLivros = [
                 autores: ["Margaret Atwood"]
             }
         ]   
-    }
+    },
 ];
 
 ResetarSecoes = () => {
@@ -88,12 +88,11 @@ ContarAutores = () => {
     ResetarSecoes();
     novaSecao = document.createElement("section");
 
-
     let numeroDeAutores = 0;
 
     for (let i = 0; i < categoriaLivros.length; i++) {
         for (let j = 0; j < categoriaLivros[i].livros.length; j++) {
-            numeroDeAutores += categoriaLivros[i].livros[j].autores.length
+            numeroDeAutores += categoriaLivros[i].livros[j].autores.length;
         }
     }
 
